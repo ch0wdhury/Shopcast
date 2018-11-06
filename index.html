@@ -23,10 +23,10 @@
       <nav class="navbar navbar-expand navbar-light navbar-custom">
           <ul class="navbar-nav offset-xl-7 offset-lg-6 offset-md-6 offset-sm-6 offset-4 col-xl-6 col-lg-6 col-md-5 col-sm-8 col-8">
             <li class="nav-item mr-xl-6 mr-lg-5 mr-md-4 mr-sm-3 mr-3">
-                <a class="nav-link" href="#fullname">Pricing</a>
+                <a class="nav-link" id="pricing" href="#fullname">Pricing</a>
             </li>
             <li class="nav-item mr-xl-6 mr-lg-5 mr-md-4 mr-sm-3 mr-3">
-              <a class="nav-link" href="#">Reach Us</a>
+              <a class="nav-link" id="reachus" href="#fullname">Reach Us</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="FAQ/faq.html">FAQ</a>
@@ -133,7 +133,7 @@
   <div class="container">
     <div class="row">
       <div class="offset-xl-2 offset-lg-2 offset-md-1 offset-sm-1 offset-1 mt-xl-5 mt-lg-4 mt-md-3 mt-2 col-xl-5 col-lg-5 col-md-6 col-sm-7 col-7">
-        <h1>I would like to <span style="font-weight: normal;">know</span> the <span style="font-weight: normal;">Pricing</span></h1>
+        <h1>I would like to <span style="font-weight: normal;">know</span></h1>
       </div>
     </div>
     <div class="row">
@@ -145,9 +145,17 @@
            <div class="form-group form-custom">
             <input type="email" class="form-control text-light bg-transparent" id="email" placeholder="Your Email Address">
           </div>
-           <div class="form-group form-custom">
-            <textarea class="form-control text-light bg-transparent" id="userdescription" placeholder="Please tell us what else do you want to know?" rows="3"></textarea>
+          <div class="form-group form-custom">
+            <input type="text" class="form-control text-light bg-transparent" id="msg-title" placeholder="Anything you would like to know?">
           </div>
+           <div class="form-group form-custom">
+            <textarea class="form-control text-light bg-transparent" id="userdescription" placeholder="Please type your message here" rows="3"></textarea>
+          </div>
+
+          <!-- Captcha Field -->
+          <div class="g-recaptcha mb-2" data-theme="light" data-sitekey="XXXXXXXXXXXXX"></div>
+          <!-- Captcha Field -->
+          
           <button type="submit" class="btn btn-primary btn-cust">Let me know</button>
         </form>
       </div>
@@ -172,31 +180,27 @@
   <!-- JQuery Plugins -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="js/scroll.js"></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <script>
 
   $(document).ready(function(){
-    // Add smooth scrolling to all links
+
     $("a").on('click', function(event) {
 
-      // Make sure this.hash has a value before overriding default behavior
       if (this.hash !== "") {
-        // Prevent default anchor click behavior
+ 
         event.preventDefault();
 
-        // Store hash
         var hash = this.hash;
 
-        // Using jQuery's animate() method to add smooth page scroll
-        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
         $('html, body').animate({
           scrollTop: $(hash).offset().top
         }, 800, function(){
      
-          // Add hash (#) to URL when done scrolling (default click behavior)
           window.location.hash = hash;
         });
-      } // End if
+      } 
     });
   });
 
@@ -322,7 +326,13 @@ var animateHTML = function() {
 };
 animateHTML().init();
 
+$("#pricing").on('click', function(){
+    $("#msg-title").attr('placeholder', "What's your pricing?");
+});
 
+$("#reachus").on('click', function(){
+    $("#msg-title").attr('placeholder', "I would like to know more about Shopcast");
+});
 
 </script>
 
